@@ -102,8 +102,38 @@
     <section id="recipes" class="py-5">
       <div class="container">
         <h2 class="text-center mb-5">Popular Recipes</h2>
+        
+        <!-- Category Filter Tabs -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-auto">
+            <div class="btn-group" role="group" aria-label="Recipe categories">
+              <button type="button" class="btn btn-outline-primary active" data-category="all" onclick="filterRecipes('all')">
+                <i class="bi bi-grid-3x3-gap me-2"></i>All Recipes
+              </button>
+              <button type="button" class="btn btn-outline-primary" data-category="No-Cook" onclick="filterRecipes('No-Cook')">
+                <i class="bi bi-snow me-2"></i>No-Cook
+              </button>
+              <button type="button" class="btn btn-outline-primary" data-category="Microwave" onclick="filterRecipes('Microwave')">
+                <i class="bi bi-lightning-charge me-2"></i>Microwave
+              </button>
+              <button type="button" class="btn btn-outline-primary" data-category="Stovetop" onclick="filterRecipes('Stovetop')">
+                <i class="bi bi-fire me-2"></i>Stovetop
+              </button>
+            </div>
+          </div>
+        </div>
+        
         <div class="row" id="recipes-container">
           <!-- Recipes will be loaded here by JavaScript -->
+        </div>
+        
+        <!-- Show More Button (only visible for "All Recipes" when there are more than 4) -->
+        <div class="row justify-content-center mt-4" id="show-more-container" style="display: none;">
+          <div class="col-auto">
+            <button class="btn btn-outline-primary btn-lg" id="show-more-btn" onclick="toggleShowMore()">
+              <i class="bi bi-chevron-down me-2"></i>Show More Recipes
+            </button>
+          </div>
         </div>
       </div>
     </section>
