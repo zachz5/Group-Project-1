@@ -196,7 +196,7 @@ function renderMealPlans() {
           <h5 class="fw-bold text-primary">${plan.title}</h5>
           <p class="text-muted">${plan.description}</p>
           <div class="mb-3">
-            <strong>Price Range:</strong> ${plan.price}<br>
+            <strong>Price Range:</strong> $3-$10<br>
             <strong>Duration:</strong> ${plan.duration}
           </div>
           <div class="mb-3">
@@ -297,7 +297,7 @@ function selectMealPlan(planId) {
   
   const recipes = plan.mealPlanRecipes?.map(mpr => mpr.recipe?.title || 'Unknown Recipe').join(', ') || 'No recipes available';
   
-  alert(`Meal Plan: ${plan.title}\n\nDescription: ${plan.description}\n\nPrice Range: ${plan.price}\nDuration: ${plan.duration}\n\nRecipes included:\n${recipes}\n\nClick "Add to Cart" to add all recipes to your cart!`);
+  alert(`Meal Plan: ${plan.title}\n\nDescription: ${plan.description}\n\nPrice Range: $3-$10\nDuration: ${plan.duration}\n\nRecipes included:\n${recipes}\n\nClick "Add to Cart" to add all recipes to your cart!`);
 }
 
 // Setup event listeners
