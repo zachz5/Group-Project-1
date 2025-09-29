@@ -605,6 +605,46 @@ async function showCart() {
   modal.show();
 }
 
+// Refresh cart content without reopening modal
+function refreshCartContent() {
+  const cartContent = document.getElementById('cart-content');
+  
+  if (cartItems.length === 0) {
+    cartContent.innerHTML = '<p class="text-center text-muted">Your cart is empty</p>';
+  } else {
+    cartContent.innerHTML = cartItems.map(item => `
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-2">
+              <div class="recipe-image-small" style="background-image: url('${item.recipeImage}'); height: 60px; background-size: cover; background-position: center; border-radius: 5px;"></div>
+            </div>
+            <div class="col-md-4">
+              <h6 class="mb-1">${item.recipeTitle}</h6>
+              <small class="text-muted">${item.categoryName}</small>
+            </div>
+            <div class="col-md-2">
+              <span class="text-success fw-bold">${item.recipePrice}</span>
+            </div>
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <button class="btn btn-outline-secondary" onclick="updateCartItem(${item.id}, ${item.quantity - 1})">-</button>
+                <input type="number" class="form-control text-center" value="${item.quantity}" min="1" onchange="updateCartItem(${item.id}, this.value)">
+                <button class="btn btn-outline-secondary" onclick="updateCartItem(${item.id}, ${item.quantity + 1})">+</button>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-outline-danger btn-sm" onclick="removeFromCart(${item.id})">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
 // Update cart item
 async function updateCartItem(cartItemId, quantity) {
   if (!authToken) return;
@@ -621,7 +661,7 @@ async function updateCartItem(cartItemId, quantity) {
 
     if (response.ok) {
       await loadCart();
-      await showCart();
+      refreshCartContent();
     }
   } catch (error) {
     console.error('Error updating cart item:', error);
@@ -642,7 +682,7 @@ async function removeFromCart(cartItemId) {
 
     if (response.ok) {
       await loadCart();
-      await showCart();
+      refreshCartContent();
     }
   } catch (error) {
     console.error('Error removing cart item:', error);
