@@ -1,294 +1,12 @@
 // EzEats - Main JavaScript
 
-// Recipe data organized by categories
-const recipes = [
-  // No-Cook Recipes
-  {
-    id: 1,
-    title: "Overnight Oats",
-    description: "Creamy overnight oats with peanut butter and fruit - perfect for busy mornings.",
-    prepTime: "5 min prep + overnight chill",
-    difficulty: "Easy",
-    category: "No-Cook",
-    price: "$1.00",
-    image: "./client/images/OvernightOats.jpg",
-    ingredients: ["½ cup rolled oats", "½ cup milk (or yogurt)", "1 tbsp peanut butter", "fruit", "chia seeds (optional)"],
-    instructions: [
-      "In a jar or container, mix oats and milk",
-      "Add peanut butter and stir well",
-      "Add fruit and chia seeds if desired",
-      "Cover and refrigerate overnight"
-    ]
-  },
-  {
-    id: 2,
-    title: "Tuna Salad Wraps",
-    description: "Quick and protein-packed tuna wraps perfect for lunch.",
-    prepTime: "5 min",
-    difficulty: "Easy",
-    category: "No-Cook",
-    price: "$1.50",
-    image: "./client/images/TunaWrap.jpg",
-    ingredients: ["1 can tuna", "1 tbsp mayo or Greek yogurt", "tortilla", "lettuce"],
-    instructions: [
-      "Drain tuna and mix with mayo or Greek yogurt",
-      "Spoon tuna mixture into tortilla",
-      "Add lettuce leaves",
-      "Roll up tightly and serve"
-    ]
-  },
-  {
-    id: 3,
-    title: "Hummus & Veggie Pita",
-    description: "Fresh and healthy pita stuffed with hummus and crisp vegetables.",
-    prepTime: "5 min",
-    difficulty: "Easy",
-    category: "No-Cook",
-    price: "$1.25",
-    image: "./client/images/PitaWrap.jpg",
-    ingredients: ["pita bread", "3 tbsp hummus", "cucumber slices", "carrot sticks", "spinach"],
-    instructions: [
-      "Cut pita bread in half",
-      "Spread hummus inside both halves",
-      "Add cucumber slices and carrot sticks",
-      "Stuff with spinach leaves and serve"
-    ]
-  },
-  {
-    id: 4,
-    title: "Peanut Butter Banana Sandwich",
-    description: "Classic comfort food with a sweet honey drizzle.",
-    prepTime: "3 min",
-    difficulty: "Easy",
-    category: "No-Cook",
-    price: "$0.75",
-    image: "./client/images/PenutButterandBanana.jpg",
-    ingredients: ["2 slices bread", "2 tbsp peanut butter", "1 banana", "honey (optional)"],
-    instructions: [
-      "Spread peanut butter on both slices of bread",
-      "Slice banana and arrange on one slice",
-      "Drizzle with honey if desired",
-      "Close sandwich and enjoy"
-    ]
-  },
-  {
-    id: 5,
-    title: "Greek Yogurt Parfait",
-    description: "Layered parfait with Greek yogurt, granola, and fresh berries.",
-    prepTime: "3 min",
-    difficulty: "Easy",
-    category: "No-Cook",
-    price: "$1.25",
-    image: "./client/images/YogurtParfait.jpg",
-    ingredients: ["1 cup Greek yogurt", "¼ cup granola", "½ cup berries", "honey (optional)"],
-    instructions: [
-      "Layer half the yogurt in a cup or bowl",
-      "Add half the granola and berries",
-      "Repeat layers with remaining ingredients",
-      "Drizzle with honey and serve"
-    ]
-  },
-  // Microwave Recipes
-  {
-    id: 6,
-    title: "Microwave Mac & Cheese",
-    description: "Creamy mac and cheese made entirely in the microwave.",
-    prepTime: "8 min",
-    difficulty: "Easy",
-    category: "Microwave",
-    price: "$1.25",
-    image: "./client/images/MicrowaveMac.jpg",
-    ingredients: ["½ cup pasta", "½ cup water", "¼ cup shredded cheese", "2 tbsp milk"],
-    instructions: [
-      "In a microwave-safe mug, add pasta and water",
-      "Microwave 4-5 minutes until pasta is soft, stirring halfway",
-      "Stir in cheese and milk until creamy",
-      "Microwave 30 seconds more if needed"
-    ]
-  },
-  {
-    id: 7,
-    title: "Microwave Baked Potato",
-    description: "Perfectly cooked baked potato with your favorite toppings.",
-    prepTime: "6 min",
-    difficulty: "Easy",
-    category: "Microwave",
-    price: "$0.80",
-    image: "./client/images/BakedPotato.jpg",
-    ingredients: ["1 potato", "sour cream", "cheese", "green onion"],
-    instructions: [
-      "Wash potato and poke holes with a fork",
-      "Microwave 5-6 minutes, flipping halfway",
-      "Let cool slightly, then cut open",
-      "Top with sour cream, cheese, and green onion"
-    ]
-  },
-  {
-    id: 8,
-    title: "Microwave Egg Scramble",
-    description: "Fluffy scrambled eggs with cheese and veggies - microwave style.",
-    prepTime: "4 min",
-    difficulty: "Easy",
-    category: "Microwave",
-    price: "$1.00",
-    image: "./client/images/ScrambledEggs.jpg",
-    ingredients: ["2 eggs", "2 tbsp milk", "shredded cheese", "diced veggies"],
-    instructions: [
-      "Whisk eggs and milk in a microwave-safe mug",
-      "Microwave 1 minute, then stir",
-      "Cook another 45 seconds to 1 minute",
-      "Stir in cheese and veggies while hot"
-    ]
-  },
-  {
-    id: 9,
-    title: "Microwave Quesadilla",
-    description: "Cheesy quesadilla made quickly in the microwave.",
-    prepTime: "4 min",
-    difficulty: "Easy",
-    category: "Microwave",
-    price: "$1.25",
-    image: "./client/images/Quesadilla.jpg",
-    ingredients: ["1 tortilla", "½ cup shredded cheese", "salsa", "beans/chicken (optional)"],
-    instructions: [
-      "Place tortilla on a microwave-safe plate",
-      "Sprinkle cheese evenly over half",
-      "Add beans or chicken if desired",
-      "Fold in half and microwave 1-2 minutes until cheese melts"
-    ]
-  },
-  {
-    id: 10,
-    title: "Microwave Mug Pizza",
-    description: "Personal pizza made entirely in a mug - perfect for one!",
-    prepTime: "7 min",
-    difficulty: "Medium",
-    category: "Microwave",
-    price: "$1.50",
-    image: "./client/images/MugPizza.jpg",
-    ingredients: ["4 tbsp flour", "3 tbsp water", "½ tsp baking powder", "2 tbsp marinara", "2 tbsp mozzarella", "pepperoni"],
-    instructions: [
-      "In a mug, mix flour, water, and baking powder into dough",
-      "Spread marinara sauce on top of dough",
-      "Add mozzarella cheese and pepperoni",
-      "Microwave 1-2 minutes until cooked through"
-    ]
-  },
-  // Stovetop Recipes
-  {
-    id: 11,
-    title: "One-Pot Ramen Upgrade",
-    description: "Transform basic ramen into a gourmet meal with egg and veggies.",
-    prepTime: "7 min",
-    difficulty: "Easy",
-    category: "Stovetop",
-    price: "$1.00",
-    image: "./client/images/OnePotRamen.jpg",
-    ingredients: ["1 ramen packet", "1 egg", "½ cup frozen veggies", "soy sauce"],
-    instructions: [
-      "Boil noodles in 2 cups water according to package directions",
-      "Add frozen veggies to the pot",
-      "Crack egg into the pot and stir until cooked",
-      "Add seasoning packet and soy sauce to taste"
-    ]
-  },
-  {
-    id: 12,
-    title: "Grilled Cheese & Tomato Soup",
-    description: "Classic comfort food combo - crispy grilled cheese with warm tomato soup.",
-    prepTime: "10 min",
-    difficulty: "Easy",
-    category: "Stovetop",
-    price: "$1.75",
-    image: "./client/images/GrilledCheese.jpg",
-    ingredients: ["2 slices bread", "2 slices cheese", "butter", "1 can tomato soup"],
-    instructions: [
-      "Heat tomato soup in a small pot",
-      "Butter bread and add cheese between slices",
-      "Grill in a pan until golden brown on both sides",
-      "Serve grilled cheese with hot tomato soup"
-    ]
-  },
-  {
-    id: 13,
-    title: "Fried Rice with Egg",
-    description: "Quick and satisfying fried rice using leftover rice and frozen veggies.",
-    prepTime: "12 min",
-    difficulty: "Easy",
-    category: "Stovetop",
-    price: "$1.25",
-    image: "./client/images/FriedRiceEgg.jpg",
-    ingredients: ["1 cup leftover rice", "1 egg", "½ cup frozen peas/carrots", "1 tbsp soy sauce"],
-    instructions: [
-      "Heat oil in a pan over medium heat",
-      "Scramble the egg and remove from pan",
-      "Add rice and frozen veggies, stir-fry until heated",
-      "Return egg to pan, add soy sauce, and stir everything together"
-    ]
-  },
-  {
-    id: 14,
-    title: "Simple Pasta with Garlic & Oil",
-    description: "Elegant pasta dish with garlic, olive oil, and red pepper flakes.",
-    prepTime: "12 min",
-    difficulty: "Easy",
-    category: "Stovetop",
-    price: "$1.25",
-    image: "./client/images/Pasta.jpg",
-    ingredients: ["1 cup pasta", "2 tbsp olive oil", "1 clove garlic", "red pepper flakes"],
-    instructions: [
-      "Cook pasta according to package directions",
-      "In a pan, heat olive oil over medium heat",
-      "Sauté minced garlic until golden",
-      "Toss cooked pasta with garlic oil and red pepper flakes"
-    ]
-  },
-  {
-    id: 15,
-    title: "Veggie Stir-Fry with Rice",
-    description: "Colorful vegetable stir-fry served over rice - healthy and delicious.",
-    prepTime: "15 min",
-    difficulty: "Easy",
-    category: "Stovetop",
-    price: "$1.50",
-    image: "./client/images/StirFry.jpg",
-    ingredients: ["1 cup frozen stir-fry veggies", "1 tbsp soy sauce", "1 cup rice"],
-    instructions: [
-      "Cook rice (microwave or stovetop)",
-      "In a pan, stir-fry frozen veggies until heated through",
-      "Add soy sauce and continue cooking 2-3 minutes",
-      "Serve stir-fry over cooked rice"
-    ]
-  }
-];
+// API Configuration
+const API_BASE_URL = 'http://localhost:5258/api';
 
-// Sample meal plan data
-const mealPlans = [
-  {
-    id: 1,
-    title: "Budget Week",
-    description: "Affordable meals under $20 for the week",
-    price: "$15-20",
-    recipes: ["Microwave Mac & Cheese", "Dorm Room Quesadilla", "Instant Ramen Upgrade"],
-    duration: "7 days"
-  },
-  {
-    id: 2,
-    title: "Protein Power",
-    description: "High-protein meals for active students",
-    price: "$25-30",
-    recipes: ["Microwave Scrambled Eggs", "Dorm Room Quesadilla", "Instant Ramen Upgrade"],
-    duration: "7 days"
-  },
-  {
-    id: 3,
-    title: "Quick & Easy",
-    description: "All meals ready in under 10 minutes",
-    price: "$20-25",
-    recipes: ["Microwave Mac & Cheese", "Microwave Scrambled Eggs", "Instant Ramen Upgrade"],
-    duration: "5 days"
-  }
-];
+// Global data storage
+let recipes = [];
+let mealPlans = [];
+let categories = [];
 
 // DOM elements
 const recipesContainer = document.getElementById('recipes-container');
@@ -298,11 +16,62 @@ const mealPlansContainer = document.getElementById('meal-plans-container');
 let currentFilter = 'all';
 let showAllRecipes = false;
 
+// API Functions
+async function fetchRecipes() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Recipe`);
+    if (!response.ok) throw new Error('Failed to fetch recipes');
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching recipes:', error);
+    return [];
+  }
+}
+
+async function fetchMealPlans() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/MealPlan`);
+    if (!response.ok) throw new Error('Failed to fetch meal plans');
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching meal plans:', error);
+    return [];
+  }
+}
+
+async function fetchCategories() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Category`);
+    if (!response.ok) throw new Error('Failed to fetch categories');
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
+}
+
 // Initialize the app
-document.addEventListener('DOMContentLoaded', function() {
-  renderRecipes();
-  renderMealPlans();
-  setupEventListeners();
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    // Load data from API
+    recipes = await fetchRecipes();
+    mealPlans = await fetchMealPlans();
+    categories = await fetchCategories();
+    
+    // Render the UI
+    renderRecipes();
+    renderMealPlans();
+    setupEventListeners();
+  } catch (error) {
+    console.error('Error initializing app:', error);
+    // Fallback to empty arrays if API fails
+    recipes = [];
+    mealPlans = [];
+    categories = [];
+    renderRecipes();
+    renderMealPlans();
+    setupEventListeners();
+  }
 });
 
 // Filter recipes by category
@@ -353,7 +122,7 @@ function renderRecipes() {
   // Filter recipes based on current filter
   const filteredRecipes = currentFilter === 'all' 
     ? recipes 
-    : recipes.filter(recipe => recipe.category === currentFilter);
+    : recipes.filter(recipe => recipe.category?.name === currentFilter);
   
   // Determine how many recipes to show
   let recipesToShow = filteredRecipes;
@@ -371,8 +140,8 @@ function renderRecipes() {
       <div class="recipe-card h-100">
         <div class="recipe-image" style="background-image: url('${recipe.image}')">
           <div class="category-badge">
-            <span class="badge bg-${getCategoryColor(recipe.category)}">
-              <i class="bi ${getCategoryIcon(recipe.category)} me-1"></i>${recipe.category}
+            <span class="badge bg-${getCategoryColor(recipe.category?.name || '')}">
+              <i class="bi ${getCategoryIcon(recipe.category?.name || '')} me-1"></i>${recipe.category?.name || 'Unknown'}
             </span>
           </div>
         </div>
@@ -387,9 +156,14 @@ function renderRecipes() {
             <span class="price-tag fw-bold text-success">${recipe.price}</span>
             <small class="text-muted">per serving</small>
           </div>
-          <button class="btn btn-outline-primary btn-sm w-100" onclick="showRecipeDetails(${recipe.id})">
-            View Recipe
-          </button>
+          <div class="d-grid gap-2">
+            <button class="btn btn-outline-primary btn-sm" onclick="showRecipeDetails(${recipe.id})">
+              View Recipe
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart(${recipe.id})" id="add-to-cart-${recipe.id}">
+              <i class="bi bi-cart-plus me-1"></i>Add to Cart
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -428,12 +202,17 @@ function renderMealPlans() {
           <div class="mb-3">
             <strong>Includes:</strong>
             <ul class="list-unstyled mt-2">
-              ${plan.recipes.map(recipe => `<li><i class="bi bi-check text-success me-2"></i>${recipe}</li>`).join('')}
+              ${plan.mealPlanRecipes?.map(mpr => `<li><i class="bi bi-check text-success me-2"></i>${mpr.recipe?.title || 'Unknown Recipe'}</li>`).join('') || '<li>No recipes available</li>'}
             </ul>
           </div>
-          <button class="btn btn-primary w-100" onclick="selectMealPlan(${plan.id})">
-            Select Plan
-          </button>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" onclick="addMealPlanToCart(${plan.id})" id="add-meal-plan-${plan.id}">
+              <i class="bi bi-cart-plus me-1"></i>Add to Cart
+            </button>
+            <button class="btn btn-outline-primary btn-sm" onclick="selectMealPlan(${plan.id})">
+              View Details
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -456,15 +235,15 @@ function showRecipeDetails(recipeId) {
   
   // Update ingredients
   const ingredientsList = document.getElementById('recipeIngredients');
-  ingredientsList.innerHTML = recipe.ingredients.map(ingredient => 
-    `<li class="list-group-item">${ingredient}</li>`
-  ).join('');
+  ingredientsList.innerHTML = recipe.ingredients?.map(ingredient => 
+    `<li class="list-group-item">${ingredient.name}</li>`
+  ).join('') || '<li class="list-group-item">No ingredients available</li>';
   
   // Update instructions
   const instructionsList = document.getElementById('recipeInstructions');
-  instructionsList.innerHTML = recipe.instructions.map((instruction, index) => 
-    `<li class="list-group-item"><strong>Step ${index + 1}:</strong> ${instruction}</li>`
-  ).join('');
+  instructionsList.innerHTML = recipe.instructions?.map((instruction, index) => 
+    `<li class="list-group-item"><strong>Step ${instruction.stepNumber}:</strong> ${instruction.instructionText}</li>`
+  ).join('') || '<li class="list-group-item">No instructions available</li>';
   
   modal.show();
 }
@@ -516,7 +295,9 @@ function selectMealPlan(planId) {
   const plan = mealPlans.find(p => p.id === planId);
   if (!plan) return;
   
-  alert(`You selected the "${plan.title}" meal plan! This would typically redirect to a checkout or planning page.`);
+  const recipes = plan.mealPlanRecipes?.map(mpr => mpr.recipe?.title || 'Unknown Recipe').join(', ') || 'No recipes available';
+  
+  alert(`Meal Plan: ${plan.title}\n\nDescription: ${plan.description}\n\nPrice Range: ${plan.price}\nDuration: ${plan.duration}\n\nRecipes included:\n${recipes}\n\nClick "Add to Cart" to add all recipes to your cart!`);
 }
 
 // Setup event listeners
@@ -549,3 +330,571 @@ function getDifficultyColor(difficulty) {
   };
   return colors[difficulty] || 'secondary';
 }
+
+// Authentication and Cart Management
+let currentUser = null;
+let authToken = null;
+let cartItems = [];
+
+// Initialize authentication
+function initAuth() {
+  authToken = localStorage.getItem('authToken');
+  if (authToken) {
+    fetchCurrentUser();
+  }
+}
+
+// Show login modal
+function showLoginModal() {
+  const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+  modal.show();
+}
+
+// Show register modal
+function showRegisterModal() {
+  const modal = new bootstrap.Modal(document.getElementById('registerModal'));
+  modal.show();
+}
+
+// Login function
+async function login(email, password) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    if (!response.ok) {
+      throw new Error('Login failed');
+    }
+
+    const data = await response.json();
+    authToken = data.token;
+    currentUser = data.user;
+    
+    localStorage.setItem('authToken', authToken);
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    
+    updateUIForLoggedInUser();
+    
+    // Close modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+    modal.hide();
+    
+    // Load cart
+    await loadCart();
+    
+    return true;
+  } catch (error) {
+    console.error('Login error:', error);
+    alert('Login failed. Please check your credentials.');
+    return false;
+  }
+}
+
+// Logout function
+function logout() {
+  authToken = null;
+  currentUser = null;
+  cartItems = [];
+  
+  localStorage.removeItem('authToken');
+  localStorage.removeItem('currentUser');
+  
+  updateUIForLoggedOutUser();
+}
+
+// Update UI for logged in user
+function updateUIForLoggedInUser() {
+  document.querySelectorAll('.nav-item button').forEach(btn => {
+    if (btn.textContent.includes('Login') || btn.textContent.includes('Register')) {
+      btn.parentElement.classList.add('d-none');
+    }
+  });
+  
+  document.getElementById('user-menu').classList.remove('d-none');
+  document.getElementById('user-name').textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+}
+
+// Update UI for logged out user
+function updateUIForLoggedOutUser() {
+  document.querySelectorAll('.nav-item button').forEach(btn => {
+    if (btn.textContent.includes('Login') || btn.textContent.includes('Register')) {
+      btn.parentElement.classList.remove('d-none');
+    }
+  });
+  
+  document.getElementById('user-menu').classList.add('d-none');
+  document.getElementById('cart-count').textContent = '0';
+}
+
+// Register function
+async function register(userData) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Auth/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Registration failed');
+    }
+
+    const data = await response.json();
+    authToken = data.token;
+    currentUser = data.user;
+    
+    localStorage.setItem('authToken', authToken);
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    
+    updateUIForLoggedInUser();
+    
+    // Close modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+    modal.hide();
+    
+    // Load cart
+    await loadCart();
+    
+    return true;
+  } catch (error) {
+    console.error('Registration error:', error);
+    alert('Registration failed: ' + error.message);
+    return false;
+  }
+}
+
+// Fetch current user
+async function fetchCurrentUser() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Auth/me`, {
+      headers: {
+        'Authorization': `Bearer ${authToken}`
+      }
+    });
+
+    if (response.ok) {
+      currentUser = await response.json();
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      updateUIForLoggedInUser();
+      await loadCart();
+    } else {
+      logout();
+    }
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    logout();
+  }
+}
+
+// Add to cart
+async function addToCart(recipeId) {
+  if (!authToken) {
+    showLoginModal();
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/Cart/add`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      },
+      body: JSON.stringify({ recipeId, quantity: 1 })
+    });
+
+    if (response.ok) {
+      await loadCart();
+      // Show success feedback
+      const button = document.getElementById(`add-to-cart-${recipeId}`);
+      const originalText = button.innerHTML;
+      button.innerHTML = '<i class="bi bi-check me-1"></i>Added!';
+      button.classList.remove('btn-primary');
+      button.classList.add('btn-success');
+      
+      setTimeout(() => {
+        button.innerHTML = originalText;
+        button.classList.remove('btn-success');
+        button.classList.add('btn-primary');
+      }, 2000);
+    } else {
+      throw new Error('Failed to add to cart');
+    }
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+    alert('Failed to add item to cart');
+  }
+}
+
+// Load cart
+async function loadCart() {
+  if (!authToken) return;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/Cart`, {
+      headers: {
+        'Authorization': `Bearer ${authToken}`
+      }
+    });
+
+    if (response.ok) {
+      const cart = await response.json();
+      cartItems = cart.items || [];
+      document.getElementById('cart-count').textContent = cart.totalItems || 0;
+    }
+  } catch (error) {
+    console.error('Error loading cart:', error);
+  }
+}
+
+// Show cart
+async function showCart() {
+  if (!authToken) {
+    showLoginModal();
+    return;
+  }
+
+  await loadCart();
+  
+  const cartContent = document.getElementById('cart-content');
+  
+  if (cartItems.length === 0) {
+    cartContent.innerHTML = '<p class="text-center text-muted">Your cart is empty</p>';
+  } else {
+    cartContent.innerHTML = cartItems.map(item => `
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-2">
+              <div class="recipe-image-small" style="background-image: url('${item.recipeImage}'); height: 60px; background-size: cover; background-position: center; border-radius: 5px;"></div>
+            </div>
+            <div class="col-md-4">
+              <h6 class="mb-1">${item.recipeTitle}</h6>
+              <small class="text-muted">${item.categoryName}</small>
+            </div>
+            <div class="col-md-2">
+              <span class="text-success fw-bold">${item.recipePrice}</span>
+            </div>
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <button class="btn btn-outline-secondary" onclick="updateCartItem(${item.id}, ${item.quantity - 1})">-</button>
+                <input type="number" class="form-control text-center" value="${item.quantity}" min="1" onchange="updateCartItem(${item.id}, this.value)">
+                <button class="btn btn-outline-secondary" onclick="updateCartItem(${item.id}, ${item.quantity + 1})">+</button>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-outline-danger btn-sm" onclick="removeFromCart(${item.id})">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  const modal = new bootstrap.Modal(document.getElementById('cartModal'));
+  modal.show();
+}
+
+// Update cart item
+async function updateCartItem(cartItemId, quantity) {
+  if (!authToken) return;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/Cart/update`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      },
+      body: JSON.stringify({ cartItemId, quantity: parseInt(quantity) })
+    });
+
+    if (response.ok) {
+      await loadCart();
+      await showCart();
+    }
+  } catch (error) {
+    console.error('Error updating cart item:', error);
+  }
+}
+
+// Remove from cart
+async function removeFromCart(cartItemId) {
+  if (!authToken) return;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/Cart/remove/${cartItemId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${authToken}`
+      }
+    });
+
+    if (response.ok) {
+      await loadCart();
+      await showCart();
+    }
+  } catch (error) {
+    console.error('Error removing cart item:', error);
+  }
+}
+
+// Proceed to checkout
+async function proceedToCheckout() {
+  if (!authToken) {
+    showLoginModal();
+    return;
+  }
+
+  if (cartItems.length === 0) {
+    alert('Your cart is empty');
+    return;
+  }
+
+  const checkoutContent = document.getElementById('checkout-content');
+  checkoutContent.innerHTML = `
+    <div class="row">
+      <div class="col-md-8">
+        <h6>Order Summary</h6>
+        ${cartItems.map(item => `
+          <div class="d-flex justify-content-between mb-2">
+            <span>${item.recipeTitle} x${item.quantity}</span>
+            <span>$${(parseFloat(item.recipePrice.replace('$', '')) * item.quantity).toFixed(2)}</span>
+          </div>
+        `).join('')}
+        <hr>
+        <div class="d-flex justify-content-between fw-bold">
+          <span>Total:</span>
+          <span>$${cartItems.reduce((total, item) => total + (parseFloat(item.recipePrice.replace('$', '')) * item.quantity), 0).toFixed(2)}</span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="d-grid gap-2">
+          <button class="btn btn-success" onclick="processCheckout()">
+            <i class="bi bi-credit-card me-1"></i>Complete Order
+          </button>
+          <button class="btn btn-outline-secondary" onclick="showCart()">
+            Back to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+  cartModal.hide();
+  
+  const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'));
+  checkoutModal.show();
+}
+
+// Process checkout
+async function processCheckout() {
+  if (!authToken) return;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/Order/checkout`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      },
+      body: JSON.stringify({ notes: '' })
+    });
+
+    if (response.ok) {
+      const order = await response.json();
+      
+      alert(`Order placed successfully! Order #${order.orderNumber}`);
+      
+      const checkoutModal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
+      checkoutModal.hide();
+      
+      await loadCart();
+    } else {
+      throw new Error('Checkout failed');
+    }
+  } catch (error) {
+    console.error('Error processing checkout:', error);
+    alert('Checkout failed. Please try again.');
+  }
+}
+
+// Show order history
+async function showOrderHistory() {
+  if (!authToken) {
+    showLoginModal();
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/Order`, {
+      headers: {
+        'Authorization': `Bearer ${authToken}`
+      }
+    });
+
+    if (response.ok) {
+      const orders = await response.json();
+      
+      const orderHistoryContent = document.getElementById('order-history-content');
+      
+      if (orders.length === 0) {
+        orderHistoryContent.innerHTML = '<p class="text-center text-muted">No orders found</p>';
+      } else {
+        orderHistoryContent.innerHTML = orders.map(order => `
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h6 class="mb-0">Order #${order.orderNumber}</h6>
+              <span class="badge bg-${order.status === 'Pending' ? 'warning' : order.status === 'Delivered' ? 'success' : 'info'}">${order.status}</span>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <h6>Items:</h6>
+                  ${order.items.map(item => `
+                    <div class="d-flex justify-content-between mb-1">
+                      <span>${item.recipeTitle} x${item.quantity}</span>
+                      <span>$${item.totalPrice.toFixed(2)}</span>
+                    </div>
+                  `).join('')}
+                </div>
+                <div class="col-md-4 text-end">
+                  <p class="mb-1"><strong>Total: $${order.totalAmount.toFixed(2)}</strong></p>
+                  <small class="text-muted">Ordered: ${new Date(order.orderDate).toLocaleDateString()}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+  } catch (error) {
+    console.error('Error loading order history:', error);
+  }
+
+  const modal = new bootstrap.Modal(document.getElementById('orderHistoryModal'));
+  modal.show();
+}
+
+// Add meal plan to cart
+async function addMealPlanToCart(mealPlanId) {
+  if (!authToken) {
+    showLoginModal();
+    return;
+  }
+
+  const mealPlan = mealPlans.find(mp => mp.id === mealPlanId);
+  if (!mealPlan || !mealPlan.mealPlanRecipes || mealPlan.mealPlanRecipes.length === 0) {
+    alert('No recipes found in this meal plan');
+    return;
+  }
+
+  try {
+    // Add each recipe from the meal plan to cart
+    const addPromises = mealPlan.mealPlanRecipes.map(mpr => 
+      fetch(`${API_BASE_URL}/Cart/add`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify({ recipeId: mpr.recipeId, quantity: 1 })
+      })
+    );
+
+    const results = await Promise.all(addPromises);
+    const failedCount = results.filter(r => !r.ok).length;
+
+    if (failedCount === 0) {
+      await loadCart();
+      
+      // Show success feedback
+      const button = document.getElementById(`add-meal-plan-${mealPlanId}`);
+      const originalText = button.innerHTML;
+      button.innerHTML = '<i class="bi bi-check me-1"></i>Added!';
+      button.classList.remove('btn-primary');
+      button.classList.add('btn-success');
+      
+      setTimeout(() => {
+        button.innerHTML = originalText;
+        button.classList.remove('btn-success');
+        button.classList.add('btn-primary');
+      }, 2000);
+      
+      alert(`Successfully added ${mealPlan.mealPlanRecipes.length} recipes from "${mealPlan.title}" to your cart!`);
+    } else {
+      throw new Error(`Failed to add ${failedCount} recipes`);
+    }
+  } catch (error) {
+    console.error('Error adding meal plan to cart:', error);
+    alert('Failed to add meal plan to cart. Please try again.');
+  }
+}
+
+// Setup form event listeners
+function setupAuthEventListeners() {
+  // Login form
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    await login(email, password);
+  });
+
+  // Register form
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const userData = {
+      firstName: document.getElementById('firstName').value,
+      lastName: document.getElementById('lastName').value,
+      email: document.getElementById('registerEmail').value,
+      password: document.getElementById('registerPassword').value,
+      phone: document.getElementById('phone').value,
+      address: document.getElementById('address').value,
+      city: document.getElementById('city').value,
+      state: document.getElementById('state').value,
+      zipCode: document.getElementById('zipCode').value
+    };
+    await register(userData);
+  });
+}
+
+// Update the main initialization
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    // Initialize authentication
+    initAuth();
+    
+    // Load data from API
+    recipes = await fetchRecipes();
+    mealPlans = await fetchMealPlans();
+    categories = await fetchCategories();
+    
+    // Render the UI
+    renderRecipes();
+    renderMealPlans();
+    setupEventListeners();
+    setupAuthEventListeners();
+  } catch (error) {
+    console.error('Error initializing app:', error);
+    // Fallback to empty arrays if API fails
+    recipes = [];
+    mealPlans = [];
+    categories = [];
+    renderRecipes();
+    renderMealPlans();
+    setupEventListeners();
+    setupAuthEventListeners();
+  }
+});
