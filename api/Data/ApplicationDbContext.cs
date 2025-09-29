@@ -254,7 +254,7 @@ namespace api.Data
                 }
             );
 
-            // Seed ingredients for a few recipes
+            // Seed ingredients for recipes
             modelBuilder.Entity<Ingredient>().HasData(
                 new Ingredient { Id = 1, Name = "½ cup rolled oats", RecipeId = 1 },
                 new Ingredient { Id = 2, Name = "½ cup milk (or yogurt)", RecipeId = 1 },
@@ -270,7 +270,71 @@ namespace api.Data
                 new Ingredient { Id = 10, Name = "½ cup pasta", RecipeId = 6 },
                 new Ingredient { Id = 11, Name = "½ cup water", RecipeId = 6 },
                 new Ingredient { Id = 12, Name = "¼ cup shredded cheese", RecipeId = 6 },
-                new Ingredient { Id = 13, Name = "2 tbsp milk", RecipeId = 6 }
+                new Ingredient { Id = 13, Name = "2 tbsp milk", RecipeId = 6 },
+
+                // Recipe 3 - Hummus & Veggie Pita
+                new Ingredient { Id = 14, Name = "1 pita", RecipeId = 3 },
+                new Ingredient { Id = 15, Name = "3 tbsp hummus", RecipeId = 3 },
+                new Ingredient { Id = 16, Name = "sliced cucumber", RecipeId = 3 },
+                new Ingredient { Id = 17, Name = "shredded carrot", RecipeId = 3 },
+
+                // Recipe 4 - Peanut Butter Banana Sandwich
+                new Ingredient { Id = 18, Name = "2 slices bread", RecipeId = 4 },
+                new Ingredient { Id = 19, Name = "1 tbsp peanut butter", RecipeId = 4 },
+                new Ingredient { Id = 20, Name = "banana slices", RecipeId = 4 },
+                new Ingredient { Id = 21, Name = "honey (optional)", RecipeId = 4 },
+
+                // Recipe 5 - Greek Yogurt Parfait
+                new Ingredient { Id = 22, Name = "1 cup Greek yogurt", RecipeId = 5 },
+                new Ingredient { Id = 23, Name = "1/3 cup granola", RecipeId = 5 },
+                new Ingredient { Id = 24, Name = "1/2 cup berries", RecipeId = 5 },
+
+                // Recipe 7 - Microwave Baked Potato
+                new Ingredient { Id = 25, Name = "1 large potato", RecipeId = 7 },
+                new Ingredient { Id = 26, Name = "1 tbsp butter", RecipeId = 7 },
+                new Ingredient { Id = 27, Name = "2 tbsp shredded cheddar", RecipeId = 7 },
+
+                // Recipe 8 - Microwave Egg Scramble
+                new Ingredient { Id = 28, Name = "2 eggs", RecipeId = 8 },
+                new Ingredient { Id = 29, Name = "2 tbsp milk", RecipeId = 8 },
+                new Ingredient { Id = 30, Name = "2 tbsp shredded cheese", RecipeId = 8 },
+
+                // Recipe 9 - Microwave Quesadilla
+                new Ingredient { Id = 31, Name = "2 tortillas", RecipeId = 9 },
+                new Ingredient { Id = 32, Name = "1/2 cup shredded cheese", RecipeId = 9 },
+
+                // Recipe 10 - Microwave Mug Pizza
+                new Ingredient { Id = 33, Name = "4 tbsp flour", RecipeId = 10 },
+                new Ingredient { Id = 34, Name = "2 tbsp milk", RecipeId = 10 },
+                new Ingredient { Id = 35, Name = "1 tbsp oil", RecipeId = 10 },
+                new Ingredient { Id = 36, Name = "2 tbsp pizza sauce", RecipeId = 10 },
+                new Ingredient { Id = 37, Name = "2 tbsp mozzarella", RecipeId = 10 },
+
+                // Recipe 11 - One-Pot Ramen Upgrade
+                new Ingredient { Id = 38, Name = "1 pack ramen", RecipeId = 11 },
+                new Ingredient { Id = 39, Name = "1 egg", RecipeId = 11 },
+                new Ingredient { Id = 40, Name = "1/4 cup frozen veggies", RecipeId = 11 },
+
+                // Recipe 12 - Grilled Cheese & Tomato Soup
+                new Ingredient { Id = 41, Name = "2 slices bread", RecipeId = 12 },
+                new Ingredient { Id = 42, Name = "2 slices cheese", RecipeId = 12 },
+                new Ingredient { Id = 43, Name = "1 can tomato soup", RecipeId = 12 },
+
+                // Recipe 13 - Fried Rice with Egg
+                new Ingredient { Id = 44, Name = "1 cup cooked rice", RecipeId = 13 },
+                new Ingredient { Id = 45, Name = "1 egg", RecipeId = 13 },
+                new Ingredient { Id = 46, Name = "1/2 cup mixed veggies", RecipeId = 13 },
+                new Ingredient { Id = 47, Name = "1 tbsp soy sauce", RecipeId = 13 },
+
+                // Recipe 14 - Simple Pasta with Garlic & Oil
+                new Ingredient { Id = 48, Name = "1 cup pasta", RecipeId = 14 },
+                new Ingredient { Id = 49, Name = "2 tbsp olive oil", RecipeId = 14 },
+                new Ingredient { Id = 50, Name = "2 cloves garlic", RecipeId = 14 },
+
+                // Recipe 15 - Veggie Stir-Fry with Rice
+                new Ingredient { Id = 51, Name = "1 cup rice", RecipeId = 15 },
+                new Ingredient { Id = 52, Name = "1 cup mixed vegetables", RecipeId = 15 },
+                new Ingredient { Id = 53, Name = "1 tbsp soy sauce", RecipeId = 15 }
             );
 
             // Seed instructions for a few recipes

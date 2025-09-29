@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\henry\\OneDrive - The University of Alabama\\Documents\\Source\\Fall2025\\Group-Project-1\\api\\api.csproj": {}
+    "/Users/zachzombron/MIS321/repos/Group-Project-1/api/api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\henry\\OneDrive - The University of Alabama\\Documents\\Source\\Fall2025\\Group-Project-1\\api\\api.csproj": {
+    "/Users/zachzombron/MIS321/repos/Group-Project-1/api/api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\henry\\OneDrive - The University of Alabama\\Documents\\Source\\Fall2025\\Group-Project-1\\api\\api.csproj",
+        "projectUniqueName": "/Users/zachzombron/MIS321/repos/Group-Project-1/api/api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\henry\\OneDrive - The University of Alabama\\Documents\\Source\\Fall2025\\Group-Project-1\\api\\api.csproj",
-        "packagesPath": "C:\\Users\\henry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\henry\\OneDrive - The University of Alabama\\Documents\\Source\\Fall2025\\Group-Project-1\\api\\obj\\",
+        "projectPath": "/Users/zachzombron/MIS321/repos/Group-Project-1/api/api.csproj",
+        "packagesPath": "/Users/zachzombron/.nuget/packages/",
+        "outputPath": "/Users/zachzombron/MIS321/repos/Group-Project-1/api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\henry\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/zachzombron/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -91,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet@8/8.0.12/libexec/sdk/8.0.112/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
