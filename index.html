@@ -79,6 +79,7 @@
             <div class="d-flex gap-3">
               <a href="#recipes" class="btn btn-light btn-lg">Browse Recipes</a>
               <a href="#meal-plans" class="btn btn-outline-light btn-lg">View Meal Plans</a>
+              <button class="btn btn-warning btn-lg" onclick="showRandomRecipe()">🎲 Surprise Me!</button>
             </div>
           </div>
           <div class="col-lg-6 text-center">
@@ -122,7 +123,56 @@
       <div class="container">
         <h2 class="text-center mb-5">Popular Recipes</h2>
         
-        <!-- Category Filter Tabs -->
+        <!-- Search Bar -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-md-6">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="searchInput" placeholder="Search recipes by name or ingredients..." onkeyup="searchRecipes()">
+              <button class="btn btn-outline-secondary" type="button" onclick="clearSearch()">Clear</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Difficulty Filter -->
+        <div class="row justify-content-center mb-3">
+          <div class="col-auto">
+            <div class="btn-group" role="group" aria-label="Difficulty filter">
+              <button type="button" class="btn btn-outline-success active" data-difficulty="all" onclick="filterByDifficulty('all')">
+                <i class="bi bi-check-circle me-2"></i>All Levels
+              </button>
+              <button type="button" class="btn btn-outline-success" data-difficulty="Easy" onclick="filterByDifficulty('Easy')">
+                <i class="bi bi-check-circle me-2"></i>Easy
+              </button>
+              <button type="button" class="btn btn-outline-success" data-difficulty="Medium" onclick="filterByDifficulty('Medium')">
+                <i class="bi bi-check-circle me-2"></i>Medium
+              </button>
+              <button type="button" class="btn btn-outline-success" data-difficulty="Hard" onclick="filterByDifficulty('Hard')">
+                <i class="bi bi-check-circle me-2"></i>Hard
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Prep Time Filter -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-auto">
+            <div class="btn-group" role="group" aria-label="Prep time filter">
+              <button type="button" class="btn btn-outline-info active" data-time="all" onclick="filterByTime('all')">
+                <i class="bi bi-clock me-2"></i>All Times
+              </button>
+              <button type="button" class="btn btn-outline-info" data-time="quick" onclick="filterByTime('quick')">
+                <i class="bi bi-clock me-2"></i>Under 15 min
+              </button>
+              <button type="button" class="btn btn-outline-info" data-time="medium" onclick="filterByTime('medium')">
+                <i class="bi bi-clock me-2"></i>15-30 min
+              </button>
+              <button type="button" class="btn btn-outline-info" data-time="long" onclick="filterByTime('long')">
+                <i class="bi bi-clock me-2"></i>30+ min
+              </button>
+            </div>
+          </div>
+        </div>
         <div class="row justify-content-center mb-4">
           <div class="col-auto">
             <div class="btn-group" role="group" aria-label="Recipe categories">

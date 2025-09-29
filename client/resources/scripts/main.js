@@ -144,6 +144,11 @@ function renderRecipes() {
               <i class="bi ${getCategoryIcon(recipe.category?.name || '')} me-1"></i>${recipe.category?.name || 'Unknown'}
             </span>
           </div>
+          <div class="favorite-badge">
+            <button class="btn btn-sm btn-light favorite-btn" onclick="toggleFavorite(${recipe.id})" data-recipe-id="${recipe.id}">
+              <i class="bi bi-heart${isFavorite(recipe.id) ? '-fill text-danger' : ''}"></i>
+            </button>
+          </div>
         </div>
         <div class="p-3">
           <h5 class="fw-bold">${recipe.title}</h5>
@@ -279,6 +284,9 @@ function createRecipeModal() {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-primary" onclick="shareRecipe()">
+              <i class="bi bi-share me-2"></i>Share Recipe
+            </button>
             <button type="button" class="btn btn-primary">Save Recipe</button>
           </div>
         </div>
@@ -605,6 +613,46 @@ async function showCart() {
   modal.show();
 }
 
+// Update cart content without reopening modal
+function updateCartContent() {
+  const cartContent = document.getElementById('cart-content');
+  
+  if (cartItems.length === 0) {
+    cartContent.innerHTML = '<p class="text-center text-muted">Your cart is empty</p>';
+  } else {
+    cartContent.innerHTML = cartItems.map(item => `
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-2">
+              <div class="recipe-image-small" style="background-image: url('${item.recipeImage}'); height: 60px; background-size: cover; background-position: center; border-radius: 5px;"></div>
+            </div>
+            <div class="col-md-4">
+              <h6 class="mb-1">${item.recipeTitle}</h6>
+              <small class="text-muted">${item.categoryName}</small>
+            </div>
+            <div class="col-md-2">
+              <span class="text-success fw-bold">${item.recipePrice}</span>
+            </div>
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <button class="btn btn-outline-secondary" onclick="updateCartItem(${item.id}, ${item.quantity - 1})">-</button>
+                <input type="number" class="form-control text-center" value="${item.quantity}" min="1" onchange="updateCartItem(${item.id}, this.value)">
+                <button class="btn btn-outline-secondary" onclick="updateCartItem(${item.id}, ${item.quantity + 1})">+</button>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-outline-danger btn-sm" onclick="removeFromCart(${item.id})">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
 // Update cart item
 async function updateCartItem(cartItemId, quantity) {
   if (!authToken) return;
@@ -621,7 +669,7 @@ async function updateCartItem(cartItemId, quantity) {
 
     if (response.ok) {
       await loadCart();
-      await showCart();
+      updateCartContent();
     }
   } catch (error) {
     console.error('Error updating cart item:', error);
@@ -642,7 +690,7 @@ async function removeFromCart(cartItemId) {
 
     if (response.ok) {
       await loadCart();
-      await showCart();
+      updateCartContent();
     }
   } catch (error) {
     console.error('Error removing cart item:', error);
@@ -898,3 +946,217 @@ document.addEventListener('DOMContentLoaded', async function() {
     setupAuthEventListeners();
   }
 });
+
+// ===== NEW FEATURES =====
+
+// Search functionality
+let searchQuery = '';
+let difficultyFilter = 'all';
+let timeFilter = 'all';
+
+async function searchRecipes() {
+  const searchInput = document.getElementById('searchInput');
+  searchQuery = searchInput.value.trim();
+  
+  try {
+    let url = `${API_BASE_URL}/Recipe`;
+    if (searchQuery) {
+      url = `${API_BASE_URL}/Recipe/search?q=${encodeURIComponent(searchQuery)}`;
+    }
+    
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Failed to fetch recipes');
+    recipes = await response.json();
+    
+    applyFilters();
+  } catch (error) {
+    console.error('Error searching recipes:', error);
+  }
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  searchQuery = '';
+  loadRecipes();
+}
+
+// Difficulty filter
+function filterByDifficulty(difficulty) {
+  difficultyFilter = difficulty;
+  
+  // Update button states
+  document.querySelectorAll('[data-difficulty]').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelector(`[data-difficulty="${difficulty}"]`).classList.add('active');
+  
+  applyFilters();
+}
+
+// Time filter
+function filterByTime(time) {
+  timeFilter = time;
+  
+  // Update button states
+  document.querySelectorAll('[data-time]').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelector(`[data-time="${time}"]`).classList.add('active');
+  
+  applyFilters();
+}
+
+// Apply all filters
+function applyFilters() {
+  let filteredRecipes = [...recipes];
+  
+  // Apply difficulty filter
+  if (difficultyFilter !== 'all') {
+    filteredRecipes = filteredRecipes.filter(recipe => recipe.difficulty === difficultyFilter);
+  }
+  
+  // Apply time filter
+  if (timeFilter !== 'all') {
+    filteredRecipes = filteredRecipes.filter(recipe => {
+      const prepTime = recipe.prepTime.toLowerCase();
+      switch (timeFilter) {
+        case 'quick':
+          return prepTime.includes('5 min') || prepTime.includes('10 min') || prepTime.includes('15 min');
+        case 'medium':
+          return prepTime.includes('20 min') || prepTime.includes('25 min') || prepTime.includes('30 min');
+        case 'long':
+          return prepTime.includes('45 min') || prepTime.includes('60 min') || prepTime.includes('hour');
+        default:
+          return true;
+      }
+    });
+  }
+  
+  // Render filtered recipes
+  const recipesContainer = document.getElementById('recipes-container');
+  if (!recipesContainer) return;
+  
+  recipesContainer.innerHTML = filteredRecipes.map(recipe => `
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="recipe-card h-100">
+        <div class="recipe-image" style="background-image: url('${recipe.image}')">
+          <div class="category-badge">
+            <span class="badge bg-${getCategoryColor(recipe.category?.name || '')}">
+              <i class="bi ${getCategoryIcon(recipe.category?.name || '')} me-1"></i>${recipe.category?.name || 'Unknown'}
+            </span>
+          </div>
+          <div class="favorite-badge">
+            <button class="btn btn-sm btn-light favorite-btn" onclick="toggleFavorite(${recipe.id})" data-recipe-id="${recipe.id}">
+              <i class="bi bi-heart${isFavorite(recipe.id) ? '-fill text-danger' : ''}"></i>
+            </button>
+          </div>
+        </div>
+        <div class="p-3">
+          <h5 class="fw-bold">${recipe.title}</h5>
+          <p class="text-muted small">${recipe.description}</p>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-primary"><i class="bi bi-clock me-1"></i>${recipe.prepTime}</small>
+            <small class="text-success"><i class="bi bi-check-circle me-1"></i>${recipe.difficulty}</small>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="price-tag fw-bold text-success">${recipe.price}</span>
+            <small class="text-muted">per serving</small>
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-outline-primary btn-sm" onclick="showRecipeDetails(${recipe.id})">
+              View Recipe
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart(${recipe.id})" id="add-to-cart-${recipe.id}">
+              <i class="bi bi-cart-plus me-1"></i>Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Favorites functionality
+function getFavorites() {
+  const favorites = localStorage.getItem('favoriteRecipes');
+  return favorites ? JSON.parse(favorites) : [];
+}
+
+function isFavorite(recipeId) {
+  return getFavorites().includes(recipeId);
+}
+
+function toggleFavorite(recipeId) {
+  let favorites = getFavorites();
+  
+  if (favorites.includes(recipeId)) {
+    favorites = favorites.filter(id => id !== recipeId);
+  } else {
+    favorites.push(recipeId);
+  }
+  
+  localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
+  
+  // Update heart icon
+  const heartIcon = document.querySelector(`[data-recipe-id="${recipeId}"] i`);
+  if (heartIcon) {
+    if (favorites.includes(recipeId)) {
+      heartIcon.className = 'bi bi-heart-fill text-danger';
+    } else {
+      heartIcon.className = 'bi bi-heart';
+    }
+  }
+}
+
+// Share recipe functionality
+function shareRecipe() {
+  const recipeTitle = document.getElementById('recipeTitle').textContent;
+  const recipeDescription = document.getElementById('recipeDescription').textContent;
+  const recipePrepTime = document.getElementById('recipePrepTime').textContent;
+  const recipeDifficulty = document.getElementById('recipeDifficulty').textContent;
+  
+  const ingredients = Array.from(document.querySelectorAll('#recipeIngredients li')).map(li => li.textContent).join('\n');
+  const instructions = Array.from(document.querySelectorAll('#recipeInstructions li')).map(li => li.textContent).join('\n');
+  
+  const shareText = `${recipeTitle}
+
+${recipeDescription}
+
+Prep Time: ${recipePrepTime}
+Difficulty: ${recipeDifficulty}
+
+Ingredients:
+${ingredients}
+
+Instructions:
+${instructions}
+
+Shared from EzEats - Easy Dorm Recipes!`;
+  
+  if (navigator.share) {
+    navigator.share({
+      title: recipeTitle,
+      text: shareText
+    });
+  } else {
+    navigator.clipboard.writeText(shareText).then(() => {
+      alert('Recipe copied to clipboard!');
+    }).catch(() => {
+      alert('Failed to copy recipe. Please try again.');
+    });
+  }
+}
+
+// Random recipe functionality
+async function showRandomRecipe() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Recipe/random`);
+    if (!response.ok) throw new Error('Failed to fetch random recipe');
+    
+    const randomRecipe = await response.json();
+    showRecipeDetails(randomRecipe.id);
+  } catch (error) {
+    console.error('Error fetching random recipe:', error);
+    alert('Failed to get random recipe. Please try again.');
+  }
+}

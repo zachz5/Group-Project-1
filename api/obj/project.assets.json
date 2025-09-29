@@ -2945,19 +2945,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cvard\\.nuget\\packages\\": {}
+    "C:\\Users\\henry\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cvard\\Desktop\\MIS 321\\GroupProject 1\\Group-Project-1\\api\\api.csproj",
+      "projectUniqueName": "C:\\Users\\henry\\OneDrive - The University of Alabama\\Documents\\Source\\Fall2025\\Group-Project-1\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\cvard\\Desktop\\MIS 321\\GroupProject 1\\Group-Project-1\\api\\api.csproj",
-      "packagesPath": "C:\\Users\\cvard\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cvard\\Desktop\\MIS 321\\GroupProject 1\\Group-Project-1\\api\\obj\\",
+      "projectPath": "C:\\Users\\henry\\OneDrive - The University of Alabama\\Documents\\Source\\Fall2025\\Group-Project-1\\api\\api.csproj",
+      "packagesPath": "C:\\Users\\henry\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\henry\\OneDrive - The University of Alabama\\Documents\\Source\\Fall2025\\Group-Project-1\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\cvard\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\henry\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2980,8 +2980,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -3027,24 +3026,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.11, 8.0.11]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.11, 8.0.11]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.11, 8.0.11]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.11, 8.0.11]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -3053,7 +3034,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
