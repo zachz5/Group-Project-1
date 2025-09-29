@@ -352,7 +352,67 @@ namespace api.Data
                 new Instruction { Id = 9, StepNumber = 1, InstructionText = "In a microwave-safe mug, add pasta and water", RecipeId = 6 },
                 new Instruction { Id = 10, StepNumber = 2, InstructionText = "Microwave 4-5 minutes until pasta is soft, stirring halfway", RecipeId = 6 },
                 new Instruction { Id = 11, StepNumber = 3, InstructionText = "Stir in cheese and milk until creamy", RecipeId = 6 },
-                new Instruction { Id = 12, StepNumber = 4, InstructionText = "Microwave 30 seconds more if needed", RecipeId = 6 }
+                new Instruction { Id = 12, StepNumber = 4, InstructionText = "Microwave 30 seconds more if needed", RecipeId = 6 },
+
+                // Recipe 3 - Hummus & Veggie Pita
+                new Instruction { Id = 13, StepNumber = 1, InstructionText = "Warm pita briefly (optional)", RecipeId = 3 },
+                new Instruction { Id = 14, StepNumber = 2, InstructionText = "Spread hummus inside pita", RecipeId = 3 },
+                new Instruction { Id = 15, StepNumber = 3, InstructionText = "Fill with cucumber and carrot", RecipeId = 3 },
+
+                // Recipe 4 - Peanut Butter Banana Sandwich
+                new Instruction { Id = 16, StepNumber = 1, InstructionText = "Spread peanut butter on bread", RecipeId = 4 },
+                new Instruction { Id = 17, StepNumber = 2, InstructionText = "Layer banana slices and drizzle honey", RecipeId = 4 },
+                new Instruction { Id = 18, StepNumber = 3, InstructionText = "Close sandwich and slice", RecipeId = 4 },
+
+                // Recipe 5 - Greek Yogurt Parfait
+                new Instruction { Id = 19, StepNumber = 1, InstructionText = "Layer yogurt in a cup", RecipeId = 5 },
+                new Instruction { Id = 20, StepNumber = 2, InstructionText = "Add granola and berries", RecipeId = 5 },
+                new Instruction { Id = 21, StepNumber = 3, InstructionText = "Repeat layers and serve", RecipeId = 5 },
+
+                // Recipe 7 - Microwave Baked Potato
+                new Instruction { Id = 22, StepNumber = 1, InstructionText = "Pierce potato with fork", RecipeId = 7 },
+                new Instruction { Id = 23, StepNumber = 2, InstructionText = "Microwave 6–8 minutes until tender", RecipeId = 7 },
+                new Instruction { Id = 24, StepNumber = 3, InstructionText = "Split and add butter and cheese", RecipeId = 7 },
+
+                // Recipe 8 - Microwave Egg Scramble
+                new Instruction { Id = 25, StepNumber = 1, InstructionText = "Beat eggs with milk in bowl", RecipeId = 8 },
+                new Instruction { Id = 26, StepNumber = 2, InstructionText = "Microwave 30s, stir, repeat until set", RecipeId = 8 },
+                new Instruction { Id = 27, StepNumber = 3, InstructionText = "Stir in cheese and season", RecipeId = 8 },
+
+                // Recipe 9 - Microwave Quesadilla
+                new Instruction { Id = 28, StepNumber = 1, InstructionText = "Place cheese between tortillas", RecipeId = 9 },
+                new Instruction { Id = 29, StepNumber = 2, InstructionText = "Microwave ~1 minute until melted", RecipeId = 9 },
+                new Instruction { Id = 30, StepNumber = 3, InstructionText = "Slice and serve", RecipeId = 9 },
+
+                // Recipe 10 - Microwave Mug Pizza
+                new Instruction { Id = 31, StepNumber = 1, InstructionText = "Mix flour, milk, oil in mug", RecipeId = 10 },
+                new Instruction { Id = 32, StepNumber = 2, InstructionText = "Top with sauce and cheese", RecipeId = 10 },
+                new Instruction { Id = 33, StepNumber = 3, InstructionText = "Microwave 1–2 minutes until set", RecipeId = 10 },
+
+                // Recipe 11 - One-Pot Ramen Upgrade
+                new Instruction { Id = 34, StepNumber = 1, InstructionText = "Boil noodles with veggies", RecipeId = 11 },
+                new Instruction { Id = 35, StepNumber = 2, InstructionText = "Add egg in last minute", RecipeId = 11 },
+                new Instruction { Id = 36, StepNumber = 3, InstructionText = "Season and serve", RecipeId = 11 },
+
+                // Recipe 12 - Grilled Cheese & Tomato Soup
+                new Instruction { Id = 37, StepNumber = 1, InstructionText = "Butter bread and add cheese", RecipeId = 12 },
+                new Instruction { Id = 38, StepNumber = 2, InstructionText = "Grill until golden both sides", RecipeId = 12 },
+                new Instruction { Id = 39, StepNumber = 3, InstructionText = "Heat soup and serve together", RecipeId = 12 },
+
+                // Recipe 13 - Fried Rice with Egg
+                new Instruction { Id = 40, StepNumber = 1, InstructionText = "Scramble egg, set aside", RecipeId = 13 },
+                new Instruction { Id = 41, StepNumber = 2, InstructionText = "Stir-fry rice and veggies", RecipeId = 13 },
+                new Instruction { Id = 42, StepNumber = 3, InstructionText = "Add soy sauce and egg", RecipeId = 13 },
+
+                // Recipe 14 - Simple Pasta with Garlic & Oil
+                new Instruction { Id = 43, StepNumber = 1, InstructionText = "Cook pasta until al dente", RecipeId = 14 },
+                new Instruction { Id = 44, StepNumber = 2, InstructionText = "Sauté garlic in olive oil", RecipeId = 14 },
+                new Instruction { Id = 45, StepNumber = 3, InstructionText = "Toss pasta with oil and chili", RecipeId = 14 },
+
+                // Recipe 15 - Veggie Stir-Fry with Rice
+                new Instruction { Id = 46, StepNumber = 1, InstructionText = "Cook rice (or use leftover)", RecipeId = 15 },
+                new Instruction { Id = 47, StepNumber = 2, InstructionText = "Stir-fry vegetables", RecipeId = 15 },
+                new Instruction { Id = 48, StepNumber = 3, InstructionText = "Season with soy and serve", RecipeId = 15 }
             );
 
             // Seed meal plans
