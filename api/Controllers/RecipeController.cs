@@ -45,18 +45,46 @@ namespace api.Controllers
             return recipe;
         }
 
-        // GET: api/Recipe/category/No-Cook
-        [HttpGet("category/{categoryName}")]
-        public async Task<ActionResult<IEnumerable<Recipe>>> GetRecipesByCategory(string categoryName)
+        // GET: api/Recipe/search?q=pasta
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Recipe>>> SearchRecipes([FromQuery] string q)
+        {
+            if (string.IsNullOrWhiteSpace(q))
+            {
+                return await GetRecipes();
+            }
+
+            var recipes = await _context.Recipes
+                .Include(r => r.Category)
+                .Include(r => r.Ingredients)
+                .Include(r => r.Instructions)
+                .Where(r => r.Title.Contains(q, StringComparison.OrdinalIgnoreCase) ||
+                           r.Description.Contains(q, StringComparison.OrdinalIgnoreCase) ||
+                           r.Ingredients.Any(i => i.Name.Contains(q, StringComparison.OrdinalIgnoreCase)))
+                .ToListAsync();
+
+            return recipes;
+        }
+
+        // GET: api/Recipe/random
+        [HttpGet("random")]
+        public async Task<ActionResult<Recipe>> GetRandomRecipe()
         {
             var recipes = await _context.Recipes
                 .Include(r => r.Category)
                 .Include(r => r.Ingredients)
                 .Include(r => r.Instructions)
-                .Where(r => r.Category.Name == categoryName)
                 .ToListAsync();
 
-            return recipes;
+            if (!recipes.Any())
+            {
+                return NotFound();
+            }
+
+            var random = new Random();
+            var randomRecipe = recipes[random.Next(recipes.Count)];
+
+            return randomRecipe;
         }
 
         // POST: api/Recipe
