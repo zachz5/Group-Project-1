@@ -43,6 +43,25 @@
             <li class="nav-item">
               <a class="nav-link" href="#about">About</a>
             </li>
+            <li class="nav-item">
+              <button class="btn btn-outline-light me-2" onclick="showLoginModal()">Login</button>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-light" onclick="showRegisterModal()">Register</button>
+            </li>
+            <li class="nav-item d-none" id="user-menu">
+              <div class="dropdown">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  <span id="user-name">User</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#" onclick="showCart()">My Cart (<span id="cart-count">0</span>)</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="showOrderHistory()">Order History</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                </ul>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -195,6 +214,153 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Login to EzEats</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="loginEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="loginEmail" required>
+              </div>
+              <div class="mb-3">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginPassword" required>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+            </form>
+            <div class="text-center mt-3">
+              <p>Don't have an account? <a href="#" onclick="showRegisterModal()">Register here</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Create Account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="registerForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="firstName" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="lastName" required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="registerEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="registerEmail" required>
+              </div>
+              <div class="mb-3">
+                <label for="registerPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="registerPassword" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone (Optional)</label>
+                <input type="tel" class="form-control" id="phone">
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address (Optional)</label>
+                <input type="text" class="form-control" id="address">
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="city" class="form-label">City (Optional)</label>
+                  <input type="text" class="form-control" id="city">
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="state" class="form-label">State (Optional)</label>
+                  <input type="text" class="form-control" id="state">
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="zipCode" class="form-label">Zip Code (Optional)</label>
+                  <input type="text" class="form-control" id="zipCode">
+                </div>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Create Account</button>
+              </div>
+            </form>
+            <div class="text-center mt-3">
+              <p>Already have an account? <a href="#" onclick="showLoginModal()">Login here</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Shopping Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div id="cart-content">
+              <!-- Cart items will be loaded here -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+            <button type="button" class="btn btn-primary" onclick="proceedToCheckout()">Proceed to Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Checkout</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div id="checkout-content">
+              <!-- Checkout form will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order History Modal -->
+    <div class="modal fade" id="orderHistoryModal" tabindex="-1">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Order History</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div id="order-history-content">
+              <!-- Order history will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Custom JS -->
     <script src="./client/resources/scripts/main.js"></script>
